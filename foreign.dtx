@@ -27,6 +27,8 @@
 %
 %<*driver>
 \documentclass[british]{ltxdoc}
+\usepackage{biblatex}
+\addbibresource{foreign.bib}
 \usepackage[all]{foreign}
 \providecommand\DescribeOther[1]{%
   \leavevmode
@@ -50,7 +52,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{205}
+% \CheckSum{188}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -101,7 +103,9 @@
 % This package affords the user automatic typeface differentiation (\eg by
 % italicising) of foreign (\eg Latin) words, phrases and abbreviations. It is
 % supplied with a number of predefined words, phrases and abbreviations that
-% should normally be italicised in an English text. Macros are automatically
+% should normally be italicised in an English text\footnote{%
+% We adhere to the recommendations of \cite{CMOS}.
+% }. Macros are automatically
 % applied to add periods and/or commas, where necessary. Note that, since the
 % basic definitions are universal in form, the package is easily adaptable to
 % languages \emph{other} than English.
@@ -387,29 +391,25 @@
 % choose to keep the periods in the surrounding font for uniformity):
 %    \begin{macrocode}
 \DeclareOption{abbreviations}{%
-  \DeclareRobustCommand\cf{\UKUS@comma{{\foreignabbrfont{cf}}}}
-  \DeclareRobustCommand\eg{%
-    \UKUS@comma{{\foreignabbrfont{e}}.{\foreignabbrfont{g}}}}
-  \DeclareRobustCommand\etal{\xperiodafter{{\foreignabbrfont{et al}}}}
-  \DeclareRobustCommand\etc{\xperiodafter{{\foreignabbrfont{etc}}}}
+  \DeclareRobustCommand\cf{\UKUS@comma{{{cf}}}}
+  \DeclareRobustCommand\eg{\UKUS@comma{{{e}}.{{g}}}}
+  \DeclareRobustCommand\etal{\xperiodafter{{{et al}}}}
+  \DeclareRobustCommand\etc{\xperiodafter{{{etc}}}}
   \DeclareRobustCommand\etseq{\xperiodafter{{\foreignabbrfont{et seq}}}}
-  \DeclareRobustCommand\ibid{\xperiodafter{{\foreignabbrfont{ibid}}}}
-  \DeclareRobustCommand\ie{%
-    \UKUS@comma{{\foreignabbrfont{i}}.{\foreignabbrfont{e}}}}
+  \DeclareRobustCommand\ibid{\xperiodafter{{{ibid}}}}
+  \DeclareRobustCommand\ie{\UKUS@comma{{{i}}.{{e}}}}
   \DeclareRobustCommand\loccit{%
     {\foreignabbrfont{loc}}.\ \xperiodafter{{\foreignabbrfont{cit}}}}
   \DeclareRobustCommand\opcit{%
     {\foreignabbrfont{op}}.\ \xperiodafter{{\foreignabbrfont{cit}}}}
   \DeclareRobustCommand\viz{\xperiodafter{{\foreignabbrfont{viz}}}}
-  \DeclareRobustCommand\Cf{\UKUS@comma{{\foreignabbrfont{Cf}}}}
-  \DeclareRobustCommand\Eg{%
-    \UKUS@comma{{\foreignabbrfont{E}}.{\foreignabbrfont{g}}}}
-  \DeclareRobustCommand\Etal{\xperiodafter{{\foreignabbrfont{Et al}}}}
-  \DeclareRobustCommand\Etc{\xperiodafter{{\foreignabbrfont{Etc}}}}
+  \DeclareRobustCommand\Cf{\UKUS@comma{{{Cf}}}}
+  \DeclareRobustCommand\Eg{\UKUS@comma{{{E}}.{{g}}}}
+  \DeclareRobustCommand\Etal{\xperiodafter{{{Et al}}}}
+  \DeclareRobustCommand\Etc{\xperiodafter{{{Etc}}}}
   \DeclareRobustCommand\Etseq{\xperiodafter{{\foreignabbrfont{Et seq}}}}
-  \DeclareRobustCommand\Ibid{\xperiodafter{{\foreignabbrfont{Ibid}}}}
-  \DeclareRobustCommand\Ie{%
-    \UKUS@comma{{\foreignabbrfont{I}}.{\foreignabbrfont{e}}}}
+  \DeclareRobustCommand\Ibid{\xperiodafter{{{Ibid}}}}
+  \DeclareRobustCommand\Ie{\UKUS@comma{{{I}}.{{e}}}}
   \DeclareRobustCommand\Loccit{%
     {\foreignabbrfont{Loc}}.\ \xperiodafter{{\foreignabbrfont{cit}}}}
   \DeclareRobustCommand\Opcit{%
@@ -418,16 +418,15 @@
 }
 %    \end{macrocode}
 %
-% The possibility to choose between the standard U.S. (default) and
-% U.K. usages (comma and no comma respectively following ``\eg'' and ``\ie'')
-% is set up here.
+% The possibility to choose between the standard U.S.\@ and
+% U.K.\@ (default) usages (comma and no comma respectively following ``\eg'' 
+% and ``\ie'') is set up here.
 %    \begin{macrocode}
 \newcommand\UKUS@comma{\xperiodafter}
 \DeclareOption{UKenglish}{\renewcommand\UKUS@comma{\xperiodafter}}
 \DeclareOption{USenglish}{\renewcommand\UKUS@comma{\xperiodcommaafter}}
-\ExecuteOptions{USenglish}
 %    \end{macrocode}
-% Add a pseudonym for U.K. English:
+% Add a pseudonym for U.K.\@ English:
 %    \begin{macrocode}
 \DeclareOption{british}{\ExecuteOptions{UKenglish}}
 %    \end{macrocode}
@@ -471,6 +470,7 @@
 }{}%
 %    \end{macrocode}
 %
+% \printbibliography
 % \Finale
 %
 \endinput
